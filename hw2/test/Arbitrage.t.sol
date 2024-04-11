@@ -73,16 +73,43 @@ contract Arbitrage is Test {
 
     function testExploit() public {
         vm.startPrank(arbitrager);
+
         uint256 tokensBefore = tokenB.balanceOf(arbitrager);
         console.log("Before Arbitrage tokenB Balance: %s", tokensBefore);
         tokenB.approve(address(router), 5 ether);
         /**
          * Please add your solution below
          */
+         
+        address[] memory path = new address[](6);
+        path[0] = address(tokenB);
+        path[1] = address(tokenA);
+        path[2] = address(tokenE);
+        path[3] = address(tokenD);
+        path[4] = address(tokenC);
+        path[5] = address(tokenB);
+
+
+        uint256[] memory amounts = router.swapExactTokensForTokens(
+            5 ether,
+            0, // Set the minimum amount of tokenA you want to receive to 0
+            path,
+            address(arbitrager), // Set the address where you want to receive the swapped tokens
+            block.timestamp + 600 // Set deadline to a reasonable future block timestamp
+        );
+
+
+        for (uint256 i = 0; i < amounts.length; i++)
+        {
+            console2.log(amounts[i]);
+        }
+        
         /**
          * Please add your solution above
          */
+        
         uint256 tokensAfter = tokenB.balanceOf(arbitrager);
+        console2.log(tokensAfter);
         assertGt(tokensAfter, 20 ether);
         console.log("After Arbitrage tokenB Balance: %s", tokensAfter);
     }
