@@ -72,6 +72,8 @@ By using this specific formula, the contract ensures that the new liquidity adde
 ## Problem 5
 What is a sandwich attack, and how might it impact you when initiating a swap?
 
+> Solution
+
 Sandwich attacks are a type of attack that can occur in decentralized exchanges (DEXs) that use Automated Market Makers (AMMs), such as Uniswap V2. The attack aims to exploit the price slippage that can occur during the execution of a user's swap transaction.
 
 The attack works by observing the user's swap transaction in the mempool (the pool of unconfirmed transactions) and then quickly submitting two additional transactions to profit from the price movement. 
@@ -81,6 +83,4 @@ First, the attacker will submit a front-running transaction that swaps one of th
 After the user's transaction has been executed, the attacker will then submit a back-running transaction to swap the tokens back, profiting from the price movement caused by the user's transaction.
 
 The impact of a sandwich attack on the user initiating the swap can be significant. The user's transaction will experience higher slippage than expected due to the price movement caused by the attacker's transactions. This can result in the user receiving significantly less of the output token than they expected, reducing their overall profit from the swap. Additionally, the user may end up paying higher gas fees due to the additional transactions involved in the sandwich attack.
-
-> Solution
 
