@@ -48,10 +48,13 @@ for sample_path in permu:
 
     amountIn = 5
     current_token='tokenB'
-
+    print("path:", sample_path)
     for pool in sample_path [1:]:
+        print(f"swap {current_token}->{pool}")
         reserve0, reserve1 = check_token_reverse_handle(current_token, pool)
+        print("amountIn:", amountIn)
         amountIn = getAmountOut(amountIn, reserve0, reserve1)
+        print("amountOut", amountIn)
         current_token = pool
 
     # print(amountIn)
