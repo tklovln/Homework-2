@@ -33,7 +33,7 @@ What is slippage in AMM, and how does Uniswap V2 address this issue? Please illu
 ### What is slippage in AMM?
 Slippage in Automated Market Makers (AMMs) refers to the difference between the expected price of a trade and the actual price at which the trade is executed. This discrepancy occurs because AMMs adjust prices based on the ratio of assets in the liquidity pool, and larger trades can cause significant changes in this ratio, resulting in unfavorable prices for the trader.
 
-### Ｈow does Uniswap V2 address this issue
+### Ｈow does Uniswap V2 address this issue?
 
 ```
 function getAmountOut(uint amountIn, uint reserveIn, uint reserveOut) internal pure returns (uint amountOut) {
@@ -45,20 +45,10 @@ function getAmountOut(uint amountIn, uint reserveIn, uint reserveOut) internal p
     uint denominator = reserveIn.mul(1000).add(amountInWithFee);
     amountOut = numerator / denominator;
 }
-
-
 ```
 This function takes the input amount, the reserves of the input token (reserveIn) and the output token (reserveOut), and calculates the output amount. The formula used here considers the fee (0.3% by default in Uniswap V2), adjusts the input amount accordingly, and then calculates the output amount based on the constant product invariant.
 
 By using this formula, Uniswap V2 minimizes slippage by ensuring that the price impact of trades is proportional to the size of the trade relative to the liquidity in the pool.
-
-
-
-
-
-
-
-
 
 ## Problem 3
 Please examine the mint function in the UniswapV2Pair contract. Upon initial liquidity minting, a minimum liquidity is subtracted. What is the rationale behind this design?
